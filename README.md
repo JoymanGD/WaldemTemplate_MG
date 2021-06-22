@@ -1,5 +1,5 @@
 # Waldem
 
-#r "nuget: Waldem, 1.0.0"
+https://www.nuget.org/packages/Waldem/
 
 Game development surrounding for quick deployment
