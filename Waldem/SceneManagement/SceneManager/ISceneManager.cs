@@ -11,9 +11,14 @@ namespace Waldem.SceneManagement.SceneManager
         IScene CurrentScene { get; set; }
 
         void ChangeCurrentScene(IScene _scene);
+
+        void ChangeCurrentScene<T>();
+
         void RunFirstScene();
 
         void NextScene();
+        
+        void PreviousScene();
         
         void RemoveScene<T>() where T:IScene;
 

@@ -84,6 +84,23 @@ namespace Waldem.SceneManagement.SceneManager
             }
         }
 
+        public void ChangeCurrentScene<T>(){
+            var type = typeof(T);
+            var _scene = Scenes[type];
+
+            if(_scene == null){
+                throw new Exception("There is no such scene (" + type + ")");
+            }
+            
+            if(_scene != CurrentScene){
+                CurrentScene = _scene;
+
+                if(!_scene.Initialized){
+                    _scene.Initialize();
+                }
+            }
+        }
+
         public void NextScene(){
             if(CurrentScene == null) return;
             
