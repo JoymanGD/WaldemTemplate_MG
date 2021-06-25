@@ -35,8 +35,8 @@ namespace Waldem.SceneManagement
 
         public virtual void Reset(){}
 
-        public virtual void Update(GameTime _gameTime){}
+        public abstract void Update(GameTime _gameTime);
 
-        public virtual void Draw(SpriteBatch _spriteBatch){}
+        public abstract void Draw(SpriteBatch _spriteBatch);
     }
 }
