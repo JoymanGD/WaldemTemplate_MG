@@ -41,31 +41,10 @@ namespace Waldem.SceneManagement.SceneManager
 
         public void Update(GameTime _gameTime){
             CurrentScene?.Update(_gameTime);
-
-            var keyState = KeyboardExtended.GetState();
-            if(keyState.WasKeyJustDown(Keys.Right)){
-                NextScene();
-            }
-            else if(keyState.WasKeyJustDown(Keys.Left)){
-                PreviousScene();
-            }
-            else if(keyState.WasKeyJustDown(Keys.R)){
-                CurrentScene.Reset();
-            }
         }
 
         public void Draw(SpriteBatch _spriteBatch){
             CurrentScene?.Draw(_spriteBatch);
-
-            Drawer.DrawString(_spriteBatch, "Current scene: " + 
-                                            CurrentScene.Name + 
-                                            "\nNext scene: RightArrow\nPrevious scene: LeftArrow\nReset: R\n\n",
-                                                                                        
-                                            new Vector2(20,20), Color.Yellow);
-            
-            Drawer.DrawString(_spriteBatch, CurrentScene.AdditionalInfo,
-                                                                                        
-                                            new Vector2(20,110), Color.Cyan);
         }
 
         public void AddScene<T>() where T:IScene{
