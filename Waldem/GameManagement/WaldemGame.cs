@@ -28,6 +28,10 @@ namespace Waldem.GameManagement
             IsMouseVisible = true;
         }
 
+        public void SetSceneManager(ISceneManager sceneManager){
+            SceneManager = sceneManager;
+        }
+
         protected override void LoadContent()
         {
             Drawer.Initialize(Content);
@@ -36,7 +40,7 @@ namespace Waldem.GameManagement
 
         protected override void Initialize()
         {   
-            SceneManager = new DefaultSceneManager();
+            SetSceneManager(new DefaultSceneManager());
             
             #region AddingScenes
             // add scenes here
@@ -49,7 +53,8 @@ namespace Waldem.GameManagement
             {
                 if(item.BaseType == type){
                     var t = item.UnderlyingSystemType;
-                    SceneManager.AddScene((IScene)Activator.CreateInstance(t));
+                    var newScene = Activator.CreateInstance(t);
+                    SceneManager.AddScene(newScene as IScene);
                 }
             }
             #endregion
