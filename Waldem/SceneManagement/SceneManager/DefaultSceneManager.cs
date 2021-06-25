@@ -61,6 +61,8 @@ namespace Waldem.SceneManagement.SceneManager
         }
 
         public void RunFirstScene(){
+            if(Scenes.Count < 2) return; //if there is only one scene - no need to search for the first
+
             foreach (var pair in Scenes)
             {
                 if(pair.Value.IsFirst){
