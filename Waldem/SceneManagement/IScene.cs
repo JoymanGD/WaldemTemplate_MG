@@ -29,7 +29,10 @@ namespace Waldem.SceneManagement
 
         public virtual void Initialize(){
             Initialized = true;
+            InitializeLocal();
         }
+
+        public abstract void InitializeLocal();
 
         public virtual void Dispose(){}
 
