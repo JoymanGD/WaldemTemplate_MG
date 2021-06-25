@@ -11,6 +11,7 @@ namespace Waldem.SceneManagement
         public string Name { get; private set; }
         public bool Initialized { get; private set; } = false;
         public string AdditionalInfo { get; protected set; }
+        public bool IsFirst { get; protected set; } = false;
         protected static WaldemGame Game { get; private set; }
 
         static IScene(){

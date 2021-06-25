@@ -15,20 +15,11 @@ namespace Waldem.SceneManagement.SceneManager
         public IScene CurrentScene { get; set; }
         
         public DefaultSceneManager(IEnumerable<IScene> _startScenes){
-            bool firstScene = false;
-
-            int index = 0;
-            
             foreach (var item in _startScenes)
             {
                 Scenes.Add(item.GetType(), item);
                 
-                if(!firstScene){
-                    ChangeCurrentScene(item);
-                    firstScene = true;
-                }
-
-                index++;
+                if(item.IsFirst) ChangeCurrentScene(item);
             }
         }
 
@@ -67,6 +58,18 @@ namespace Waldem.SceneManagement.SceneManager
 
         public IScene GetScene<T>() where T:IScene{
             return Scenes[typeof(T)];
+        }
+
+        public void RunFirstScene(){
+            foreach (var pair in Scenes)
+            {
+                if(pair.Value.IsFirst){
+                    ChangeCurrentScene(pair.Value);
+                    return;
+                }
+            }
+
+            throw new Exception("No scene with attribute 'IsFirst' was added. Define first scene parent's field 'IsFirst' as true");
         }
 
         public void ChangeCurrentScene(IScene _scene){

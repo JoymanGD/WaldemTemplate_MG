@@ -60,6 +60,8 @@ namespace Waldem.GameManagement
             }
             #endregion
 
+            SceneManager.RunFirstScene();
+
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
             base.Initialize();
