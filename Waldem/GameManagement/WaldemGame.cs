@@ -44,6 +44,14 @@ namespace Waldem.GameManagement
             var types = AppDomain.CurrentDomain.GetAssemblies()
             .SelectMany(s => s.GetTypes())
             .Where(p => type.IsAssignableFrom(p));
+
+            foreach (var item in types)
+            {
+                if(item.BaseType == type){
+                    var t = item.UnderlyingSystemType;
+                    SceneManager.AddScene((IScene)Activator.CreateInstance(t));
+                }
+            }
             #endregion
 
             SpriteBatch = new SpriteBatch(GraphicsDevice);
