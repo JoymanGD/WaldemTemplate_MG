@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace Waldem.Patterns
 {
-    public class Singleton<T> : Game
+    public class GameSingleton<T> : Game, ISingleton<T>
     {
         public static T Instance {
             get{

@@ -3,22 +3,25 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Waldem.Patterns;
 using Waldem.SceneManagement.SceneManager;
+using Waldem.SceneManagement;
 using Waldem.Helpers;
+using System;
+using System.Linq;
 
 namespace Waldem.GameManagement
 {
-    public class WaldemGame : Singleton<WaldemGame>
+    public class WaldemGame : GameSingleton<WaldemGame>
     {
         public GraphicsDeviceManager Graphics { get; private set; }
         public SpriteBatch SpriteBatch { get; private set; }
         public ISceneManager SceneManager { get; private set; }
 
-        public WaldemGame(){
+        public WaldemGame(int width, int height){
             Graphics = new GraphicsDeviceManager(this);
             Graphics.GraphicsProfile = GraphicsProfile.HiDef;
 
-            Graphics.PreferredBackBufferHeight = 1024;
-            Graphics.PreferredBackBufferWidth = 768;
+            Graphics.PreferredBackBufferHeight = height;
+            Graphics.PreferredBackBufferWidth = width;
             Graphics.ApplyChanges();
 
             Content.RootDirectory = "Content";
@@ -37,6 +40,10 @@ namespace Waldem.GameManagement
             
             #region AddingScenes
             // add scenes here
+            var type = typeof(IScene);
+            var types = AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(s => s.GetTypes())
+            .Where(p => type.IsAssignableFrom(p));
             #endregion
 
             SpriteBatch = new SpriteBatch(GraphicsDevice);
