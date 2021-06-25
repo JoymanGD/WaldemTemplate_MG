@@ -16,20 +16,21 @@ namespace Waldem.GameManagement
         public SpriteBatch SpriteBatch { get; private set; }
         public ISceneManager SceneManager { get; private set; }
 
-        public WaldemGame(int width, int height){
+        public WaldemGame(){
             Graphics = new GraphicsDeviceManager(this);
             Graphics.GraphicsProfile = GraphicsProfile.HiDef;
-
-            Graphics.PreferredBackBufferHeight = height;
-            Graphics.PreferredBackBufferWidth = width;
-            Graphics.ApplyChanges();
-
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
 
         public void SetSceneManager(ISceneManager sceneManager){
             SceneManager = sceneManager;
+        }
+
+        public void SetResolution(int width, int height){
+            Graphics.PreferredBackBufferHeight = height;
+            Graphics.PreferredBackBufferWidth = width;
+            Graphics.ApplyChanges();
         }
 
         protected override void LoadContent()
