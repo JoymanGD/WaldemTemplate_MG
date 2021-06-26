@@ -6,6 +6,9 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.Input;
 using Waldem.Helpers;
+using MonoGame.Extended;
+using MonoGame.Extended.Tweening;
+using Waldem.GameManagement;
 
 namespace Waldem.SceneManagement.SceneManager
 {
@@ -13,6 +16,10 @@ namespace Waldem.SceneManagement.SceneManager
     {
         public Dictionary<Type, IScene> Scenes { get; set; } = new Dictionary<Type, IScene>();
         public IScene CurrentScene { get; set; }
+        private Color FadeColor;
+        private float FadeAlpha;
+        private Size2 FadeSize;
+        private Tweener Tweener;
         
         public DefaultSceneManager(IEnumerable<IScene> _startScenes){
             foreach (var item in _startScenes)
@@ -21,21 +28,57 @@ namespace Waldem.SceneManagement.SceneManager
                 
                 if(item.IsFirst) ChangeCurrentScene(item);
             }
+            SetupFading();
         }
 
         public DefaultSceneManager(IScene _scene){
             AddScene(_scene);
             ChangeCurrentScene(_scene);
+            SetupFading();
         }
 
-        public DefaultSceneManager(){}
+        public DefaultSceneManager(){
+            SetupFading();
+        }
+
+        private void SetupFading(){
+            FadeColor = Color.Black;
+            
+            FadeAlpha = 1;
+
+            var gDev = WaldemGame.Instance.GraphicsDevice;            
+            var width = gDev.Adapter.CurrentDisplayMode.Width;
+            var height = gDev.Adapter.CurrentDisplayMode.Height;
+
+            FadeSize = new Size2(width, height);
+
+            Tweener = new Tweener();
+        }
+
+        public void Fade(FadeTypes type, float duration = 1){
+            float result = type == FadeTypes.In ? 0 : 1;
+
+            Tweener.TweenTo(this, expression: s=>s.FadeAlpha, result, duration);
+        }
+
+        public enum FadeTypes
+        {
+            In, Out
+        }
 
         public void Update(GameTime _gameTime){
             CurrentScene?.Update(_gameTime);
+
+            Tweener.Update(_gameTime.GetElapsedSeconds());
         }
 
         public void Draw(SpriteBatch _spriteBatch){
             CurrentScene?.Draw(_spriteBatch);
+
+            if(FadeAlpha > 0){
+                FadeColor.A = (byte)FadeAlpha;
+                Drawer.DrawFillRectangle(_spriteBatch, Vector2.Zero, FadeSize, FadeColor);
+            }
         }
 
         public void AddScene<T>() where T:IScene{
