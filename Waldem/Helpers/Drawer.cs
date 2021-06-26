@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Waldem.Helpers
 {
+    //
     public static class Drawer
     {
         static SpriteFont SpriteFont;
