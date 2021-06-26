@@ -4,13 +4,14 @@
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Waldem</PackageId>
-    <Version>1.0.4.2-DirectX</Version>
+    <Version>1.0.4.3-DirectX</Version>
     <Authors>Joyman</Authors>
     <Company>Waldem Games</Company>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MonoGame.Extended" Version="3.8.0" />
     <PackageReference Include="MonoGame.Extended.Input" Version="3.8.0" />
+    <PackageReference Include="MonoGame.Extended.Tweening" Version="3.8.0" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />
   </ItemGroup>
 </Project>

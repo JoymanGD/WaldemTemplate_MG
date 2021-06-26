@@ -85,6 +85,12 @@ namespace Waldem.Helpers
                 _spriteBatch.DrawRectangle(location, size, color, thickness, layerDepth);
             });
         }
+
+        public static void DrawFillRectangle(SpriteBatch _spriteBatch, Vector2 location, Size2 size, Color color){
+            WrapDrawing(_spriteBatch, ()=>{
+                _spriteBatch.FillRectangle(location, size, color);
+            });
+        }
     #endregion
 
 
