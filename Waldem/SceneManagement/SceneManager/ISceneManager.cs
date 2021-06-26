@@ -29,5 +29,11 @@ namespace Waldem.SceneManagement.SceneManager
         void Draw(SpriteBatch _spriteBatch);
 
         void Update(GameTime _gameTime);
+
+        void Fade(FadeTypes type, float duration);
+
+        enum FadeTypes{
+            In, Out
+        };
     }
 }

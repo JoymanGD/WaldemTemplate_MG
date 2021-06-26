@@ -9,6 +9,7 @@ using Waldem.Helpers;
 using MonoGame.Extended;
 using MonoGame.Extended.Tweening;
 using Waldem.GameManagement;
+using static Waldem.SceneManagement.SceneManager.ISceneManager;
 
 namespace Waldem.SceneManagement.SceneManager
 {
@@ -17,7 +18,7 @@ namespace Waldem.SceneManagement.SceneManager
         public Dictionary<Type, IScene> Scenes { get; set; } = new Dictionary<Type, IScene>();
         public IScene CurrentScene { get; set; }
         private Color FadeColor;
-        private float FadeAlpha;
+        public float FadeAlpha;
         private Size2 FadeSize;
         private Tweener Tweener;
         
@@ -59,11 +60,6 @@ namespace Waldem.SceneManagement.SceneManager
             float result = type == FadeTypes.In ? 0 : 1;
 
             Tweener.TweenTo(this, expression: s=>s.FadeAlpha, result, duration);
-        }
-
-        public enum FadeTypes
-        {
-            In, Out
         }
 
         public void Update(GameTime _gameTime){
