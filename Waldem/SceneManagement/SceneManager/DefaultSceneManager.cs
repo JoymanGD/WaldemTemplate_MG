@@ -17,7 +17,6 @@ namespace Waldem.SceneManagement.SceneManager
     {
         public Dictionary<Type, IScene> Scenes { get; set; } = new Dictionary<Type, IScene>();
         public IScene CurrentScene { get; set; }
-        private Color FadeColor;
         public float FadeAlpha;
         private Size2 FadeSize;
         private Tweener Tweener;
@@ -43,7 +42,6 @@ namespace Waldem.SceneManagement.SceneManager
         }
 
         private void SetupFading(){
-            FadeColor = Color.Black;
             
             FadeAlpha = 1;
 
@@ -72,8 +70,7 @@ namespace Waldem.SceneManagement.SceneManager
             CurrentScene?.Draw(_spriteBatch);
 
             if(FadeAlpha > 0){
-                FadeColor.A = (byte)FadeAlpha;
-                Drawer.DrawFillRectangle(_spriteBatch, Vector2.Zero, FadeSize, FadeColor);
+                Drawer.DrawFillRectangle(_spriteBatch, Vector2.Zero, FadeSize, new Color(Color.Black, FadeAlpha));
             }
         }
 
