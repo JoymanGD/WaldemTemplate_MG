@@ -34,7 +34,6 @@ namespace Waldem.GameManagement
 
         protected override void LoadContent()
         {
-            Drawer.Initialize(Content);
             base.LoadContent();
         }
 
