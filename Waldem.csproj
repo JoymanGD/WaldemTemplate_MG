@@ -4,7 +4,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Waldem</PackageId>
-    <Version>1.0.4-DirectX</Version>
+    <Version>1.0.4.1-DirectX</Version>
     <Authors>Joyman</Authors>
     <Company>Waldem Games</Company>
   </PropertyGroup>
