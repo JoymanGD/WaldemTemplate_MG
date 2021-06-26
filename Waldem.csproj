@@ -4,7 +4,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Waldem</PackageId>
-    <Version>1.0.3.9</Version>
+    <Version>1.0.4-OpenGL</Version>
     <Authors>Joyman</Authors>
     <Company>Waldem Games</Company>
   </PropertyGroup>
