@@ -8,7 +8,6 @@ namespace Waldem.Helpers
 {
     public static class Drawer
     {
-        static SpriteFont SpriteFont;
 
     #region Core
         private static void WrapDrawing(SpriteBatch _spriteBatch, Action _drawing){
@@ -16,27 +15,23 @@ namespace Waldem.Helpers
             _drawing.Invoke();
             _spriteBatch.End();
         }
-
-        public static void Initialize(ContentManager _content){
-            SpriteFont = _content.Load<SpriteFont>("Fonts/Default");
-        }
     #endregion
 
 
     #region Draw string
-        public static void DrawString(SpriteBatch _spriteBatch, string _text, Vector2 position, Color color){
+        public static void DrawString(SpriteBatch _spriteBatch, SpriteFont spriteFont, string _text, Vector2 position, Color color){
             if(_text == null) return;
             
             WrapDrawing(_spriteBatch, ()=>{
-                _spriteBatch.DrawString(SpriteFont, _text, position, color);
+                _spriteBatch.DrawString(spriteFont, _text, position, color);
             });
         }
 
-        public static void DrawString(SpriteBatch _spriteBatch, string _text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects spriteEffects, float layerDepth){
+        public static void DrawString(SpriteBatch _spriteBatch, SpriteFont spriteFont, string _text, Vector2 position, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects spriteEffects, float layerDepth){
             if(_text == null) return;
             
             WrapDrawing(_spriteBatch, ()=>{
-                _spriteBatch.DrawString(SpriteFont, _text, position, color, rotation, origin, scale, spriteEffects, layerDepth);
+                _spriteBatch.DrawString(spriteFont, _text, position, color, rotation, origin, scale, spriteEffects, layerDepth);
             });
         }
     #endregion
