@@ -54,10 +54,10 @@ namespace Waldem.SceneManagement.SceneManager
             Tweener = new Tweener();
         }
 
-        public void Fade(FadeTypes type, float duration = 1){
+        public void Fade(FadeTypes type, float duration = 1, Action onEnd = null){
             float result = type == FadeTypes.In ? 0 : 1;
 
-            Tweener.TweenTo(this, expression: s=>s.FadeAlpha, result, duration);
+            Tweener.TweenTo(this, expression: s=>s.FadeAlpha, result, duration).OnEnd(tween=>onEnd.Invoke());
         }
 
         public void Update(GameTime _gameTime){
@@ -66,11 +66,12 @@ namespace Waldem.SceneManagement.SceneManager
             Tweener.Update(_gameTime.GetElapsedSeconds());
         }
 
-        public void Draw(SpriteBatch _spriteBatch){
-            CurrentScene?.Draw(_spriteBatch);
+        public void Draw(GameTime gameTime){
+            var spriteBatch = WaldemGame.Instance.SpriteBatch;
+            CurrentScene?.Draw(spriteBatch);
 
             if(FadeAlpha > 0){
-                Drawer.DrawFillRectangle(_spriteBatch, Vector2.Zero, FadeSize, new Color(Color.Black, FadeAlpha));
+                Drawer.DrawFillRectangle(spriteBatch, Vector2.Zero, FadeSize, new Color(Color.Black, FadeAlpha));
             }
         }
 
