@@ -57,7 +57,7 @@ namespace Waldem.SceneManagement.SceneManager
         public void Fade(FadeTypes type, float duration = 1, Action onEnd = null){
             float result = type == FadeTypes.In ? 0 : 1;
 
-            Tweener.TweenTo(this, expression: s=>s.FadeAlpha, result, duration).OnEnd(tween=>onEnd.Invoke());
+            Tweener.TweenTo(this, expression: s=>s.FadeAlpha, result, duration).OnEnd(tween=>onEnd?.Invoke());
         }
 
         public void Update(GameTime _gameTime){
