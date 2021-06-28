@@ -67,11 +67,10 @@ namespace Waldem.SceneManagement.SceneManager
         }
 
         public void Draw(GameTime gameTime){
-            var spriteBatch = WaldemGame.Instance.SpriteBatch;
-            CurrentScene?.Draw(spriteBatch);
+            CurrentScene?.Draw(gameTime);
 
             if(FadeAlpha > 0){
-                Drawer.DrawFillRectangle(spriteBatch, Vector2.Zero, FadeSize, new Color(Color.Black, FadeAlpha));
+                Drawer.DrawFillRectangle(WaldemGame.Instance.SpriteBatch, Vector2.Zero, FadeSize, new Color(Color.Black, FadeAlpha));
             }
         }
 
