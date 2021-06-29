@@ -9,7 +9,7 @@ namespace Waldem.UI.Elements
         public string Text;
         public Color TextColor;
 
-        public Label(Vector2 position, string text) : base(position)
+        public Label(Vector2 position, string text, bool independent = true) : base(position, independent)
         {
             Text = text;
             TextColor = Color.SkyBlue;

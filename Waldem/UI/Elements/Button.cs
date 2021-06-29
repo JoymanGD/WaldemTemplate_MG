@@ -27,7 +27,7 @@ namespace Waldem.UI.Elements
 
         private void SetLabel(string text){
             var labelPos = Position + (Vector2)Size/2;
-            Label = new Label(labelPos, text);
+            Label = new Label(labelPos, text, false);
         }
     }
 }
