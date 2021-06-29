@@ -9,12 +9,14 @@ namespace Waldem.UI.Elements
         
         public Button(Vector2 position, Size2 size, string text) : base(position, size)
         {
-            SetLabel(text);
+            var labelPos = Position + (Vector2)Size/2;
+            Label = new Label(labelPos, text, false);
         }
         
         public Button(Vector2 position, Size2 size, string text, Color textColor, Color backgroundColor, Color outlineColor) : base(position, size, backgroundColor, outlineColor)
         {
-            SetLabel(text);
+            var labelPos = Position + (Vector2)Size/2;
+            Label = new Label(labelPos, text, textColor, false);
         }
 
         public override void Draw(GameTime gameTime)
@@ -24,10 +26,5 @@ namespace Waldem.UI.Elements
         }
 
         public override void Update(GameTime gameTime){}
-
-        private void SetLabel(string text){
-            var labelPos = Position + (Vector2)Size/2;
-            Label = new Label(labelPos, text, false);
-        }
     }
 }
