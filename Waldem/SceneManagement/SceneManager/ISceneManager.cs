@@ -26,11 +26,11 @@ namespace Waldem.SceneManagement.SceneManager
 
         IScene GetScene<T>() where T:IScene;
 
-        void Draw(SpriteBatch _spriteBatch);
+        void Draw(GameTime _gameTime);
 
         void Update(GameTime _gameTime);
 
-        void Fade(FadeTypes type, float duration);
+        void Fade(FadeTypes type, float duration = 1, Action onEnd = null);
 
         enum FadeTypes{
             In, Out

@@ -74,7 +74,7 @@ namespace Waldem.GameManagement
 
         protected override void Draw(GameTime gameTime)
         {
-            SceneManager.Draw(SpriteBatch);
+            SceneManager.Draw(gameTime);
 
             base.Draw(gameTime);
         }
