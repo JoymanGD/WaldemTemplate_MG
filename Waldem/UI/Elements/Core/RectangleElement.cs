@@ -24,7 +24,7 @@ namespace Waldem.UI
         public override void Draw(GameTime gameTime)
         {
             SpriteBatch.Begin();
-            SpriteBatch.DrawRectangle(Bounds, BackgroundColor, Bounds.Width);
+            SpriteBatch.FillRectangle(Bounds, BackgroundColor);
             SpriteBatch.DrawRectangle(Bounds, OutlineColor);
             SpriteBatch.End();
         }
