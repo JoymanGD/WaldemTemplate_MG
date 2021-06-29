@@ -1,11 +1,14 @@
 using Microsoft.Xna.Framework;
 using MonoGame.Extended;
+using MonoGame.Extended.Input;
 
 namespace Waldem.UI.Elements
 {
     public class Button : RectangleElement
     {
         public Label Label { get; private set; }
+        public bool Clicked { get; private set; }
+        public bool Focused { get; private set; }
         
         public Button(Vector2 position, Size2 size, string text) : base(position, size)
         {
@@ -25,6 +28,12 @@ namespace Waldem.UI.Elements
             Label.Draw(gameTime);
         }
 
-        public override void Update(GameTime gameTime){}
+        public override void Update(GameTime gameTime){
+            var mouseState = MouseExtended.GetState();
+            
+            Focused = Bounds.Contains(mouseState.Position);
+
+            Clicked = Focused && mouseState.WasButtonJustDown(MouseButton.Left);
+        }
     }
 }
