@@ -7,7 +7,7 @@ namespace Waldem.UI
     {
         public Size2 Size { get; protected set; }
 
-        public ScalableElement(Vector2 position, Size2 size) : base(position){
+        public ScalableElement(Vector2 position, Size2 size, bool independent = true) : base(position, independent){
             Size = Size;
         }
     }

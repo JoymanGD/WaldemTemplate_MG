@@ -9,7 +9,7 @@ namespace Waldem.UI
         public Color OutlineColor;
         protected RectangleF Bounds { get; private set; }
 
-        public RectangleElement(Vector2 position, Size2 size) : base(position, size){
+        public RectangleElement(Vector2 position, Size2 size, bool independent = true) : base(position, size, independent){
             Bounds = new Rectangle(Position.ToPoint(), (Point)size);
             BackgroundColor = Color.Black;
             OutlineColor = Color.White;
