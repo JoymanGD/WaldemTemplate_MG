@@ -11,8 +11,9 @@ namespace Waldem.UI
         protected GUIProcessor Processor { get; private set; }
 
         public GUIElement(Vector2 position, bool independent = true){
+            Processor = WaldemGame.Instance.Services.GetService<GUIProcessor>();
+            
             if(independent){
-                Processor = WaldemGame.Instance.Services.GetService<GUIProcessor>();
                 Processor.AddElement(this);
             }
 

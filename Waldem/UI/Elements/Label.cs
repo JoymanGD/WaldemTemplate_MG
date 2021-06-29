@@ -15,7 +15,7 @@ namespace Waldem.UI.Elements
             TextColor = Color.SkyBlue;
         }
         
-        public Label(Vector2 position, string text, Color textColor) : base(position)
+        public Label(Vector2 position, string text, Color textColor, bool independent = true) : base(position, independent)
         {
             Text = text;
             TextColor = textColor;
